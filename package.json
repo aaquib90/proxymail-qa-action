@@ -1,0 +1,14 @@
+{
+  "name": "@proxymail/github-action",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Proxy Mail QA GitHub Action: a run per job, with its evidence on the pull request. Published from github.com/aaquib90/proxymail-qa-action.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.3"
+  }
+}

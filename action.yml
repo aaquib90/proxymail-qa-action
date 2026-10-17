@@ -1,0 +1,35 @@
+name: Proxy Mail QA run
+description: Groups the job's email tests into a Proxy Mail QA run and posts its evidence (which emails arrived, how fast, codes, checks) on the pull request.
+author: Proxy Mail QA
+branding:
+  icon: mail
+  color: green
+inputs:
+  api-key:
+    description: A Proxy Mail QA API key, from a secret (Project settings → API keys in the app).
+    required: true
+  name:
+    description: The run's name. Runs with the same name share one pull request comment, so give matrix jobs their own.
+    default: ${{ github.workflow }} / ${{ github.job }}
+  comment:
+    description: Post the report on the pull request (true or false). Needs `pull-requests: write`.
+    default: 'true'
+  fail-job:
+    description: Fail the job when the run failed (an email missing, one that came when none should, or a failed email check), even if the tests passed.
+    default: 'false'
+  github-token:
+    description: The token used to comment on the pull request.
+    default: ${{ github.token }}
+  api-url:
+    description: The Proxy Mail QA API.
+    default: https://api.proxymail.qa
+outputs:
+  run-id:
+    description: The run's id, also set as PROXYMAIL_QA_RUN for later steps.
+  run-url:
+    description: The run in the Proxy Mail QA app.
+runs:
+  using: node24
+  main: src/main.mjs
+  post: src/post.mjs
+  post-if: always()
