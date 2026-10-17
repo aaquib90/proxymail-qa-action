@@ -24,6 +24,14 @@ The action starts a run and sets `PROXYMAIL_QA_RUN` for the steps after it. The 
 
 After the job, whether it passed or not, the action finishes the run, writes the report to the job summary and posts it on the pull request, updating the same comment on each push.
 
+### Which test each email came from
+
+With the Node.js client 0.8.0 or later, Playwright tests import `test` from `proxymail-qa/playwright` and add `proxymail-qa/playwright/reporter` to the config's reporters. With pytest, `conftest.py` imports the [Python helper's](https://proxymail.qa/docs/python) hooks. The report then says which test each email belongs to, and lists the tests that failed with what their emails did and the step that failed. [How to set it up](https://proxymail.qa/docs/ci#which-test-each-email-came-from)
+
+### Compared with the last runs
+
+The report compares the run with the last 10 finished runs of the same name and lists what changed: emails that took much longer than usual, a test that now gets two emails instead of one, tests that fail for the first time or now and then, email checks that newly fail, and a new sender or link site. Keep `name` the same from run to run.
+
 ## Inputs
 
 | Input          | Default                    | What it does                                                                                                                                |
