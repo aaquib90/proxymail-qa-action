@@ -15,7 +15,7 @@ inputs:
     description: Post the report on the pull request (true or false). Needs `pull-requests: write`.
     default: 'true'
   fail-job:
-    description: Fail the job when the run failed (an email missing, one that came when none should, or a failed email check), even if the tests passed.
+    description: Fail the job when the run failed (an email missing or one that came when none should, a failed check or test, or a note), even if the tests passed.
     default: 'false'
   github-token:
     description: The token used to comment on the pull request.
